@@ -16,11 +16,11 @@ class FurnaceCombatQoL {
         let initiative = html.find(".token-initiative")
         let combatant = game.combat.combatants.get(cid)
         if (!combatant.isOwner) return;
-        let input = $(`<input class="initiative" style="width: 90%" value="${combatant.initiative}"/>`)
+        let input = $(`<input class="initiative" style="width: 80%" value="${combatant.initiative}"/>`)
         initiative.off("dblclick")
         initiative.empty().append(input)
         input.focus().select()
-        input.on('change', ev => game.combat.updateCombatant({ _id: cid, initiative: input.val() }))
+        input.on('change', ev => game.combat.combatants.get(cid).update({initiative: input.val()}))
         input.on('focusout', ev => game.combats.render())
 
 
